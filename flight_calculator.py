@@ -1,5 +1,7 @@
 """Utilities for calculating active drone flight time based on payload weight."""
 
+import argparse
+
 
 def calculate_flight_time(weight_grams):
     """Return the active flight time in minutes for a given payload weight.
@@ -46,5 +48,18 @@ def flight_time_table(max_weight_grams, step_grams):
         current_weight += step_grams
 
     return table
+
+
+def main():
+    """Command-line interface for calculating flight time from payload mass."""
+    parser = argparse.ArgumentParser(description="Calculate drone flight time from payload weight in grams.")
+    parser.add_argument("--weight", type=float, default=0.0, help="Payload weight in grams.")
+    args = parser.parse_args()
+
+    print(f"Flight time for {args.weight} g: {calculate_flight_time(args.weight)} minutes")
+
+
+if __name__ == "__main__":
+    main()
 
 
